@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { news } from "../Data";
+import { news , blogs } from "../Data";
 import { Container, Carousel, Card, Figure } from "react-bootstrap";
 
 function Category(props) {
@@ -49,6 +49,7 @@ function Category(props) {
             </div>
             <div className="col-md-5">
                 <h4>Blogs</h4>
+                {blogs.map((blog) =>
                 <Card body className="mt-3" style={{backgroundColor:"lightblue"}}>
                     <div className="row">
                      <div className="col-md-4">
@@ -56,52 +57,19 @@ function Category(props) {
                                 width={80}
                                 height={80}
                                 alt="80x80"
-                                src="https://lh3.googleusercontent.com/proxy/5EfuG_8qkCzkAd1F3rL7qrzaKJ9RGh42n0VF91VJNN2T2Vni1l5koxVe4BNNZEW0nH4-a81ANGVtCWAbm3xwLsk"
+                                src={blog.author.image}
                             />
                         </div>
                         <div className="col-md-8">
-                            <h5>Title</h5>
-                            <p >This is some text within a card body.</p>
+                            <h5>{blog.author.name}</h5>
+                            <p >{blog.text}.</p>
                         </div> 
                         </div>
                 </Card>
-
-                <Card body className="mt-3" style={{backgroundColor:"lightblue"}}>
-                    <div className="row">
-                     <div className="col-md-4">
-                        <Figure.Image
-                                width={80}
-                                height={80}
-                                alt="80x80"
-                                src="https://lh3.googleusercontent.com/proxy/5EfuG_8qkCzkAd1F3rL7qrzaKJ9RGh42n0VF91VJNN2T2Vni1l5koxVe4BNNZEW0nH4-a81ANGVtCWAbm3xwLsk"
-                            />
-                        </div>
-                        <div className="col-md-8">
-                            <h5>Title</h5>
-                            <p >This is some text within a card body.</p>
-                        </div> 
-                        </div>
-                </Card>
-
-                <Card body className="mt-3" style={{backgroundColor:"lightblue"}}>
-                    <div className="row">
-                     <div className="col-md-4">
-                        <Figure.Image
-                                width={80}
-                                height={80}
-                                alt="80x80"
-                                src="https://lh3.googleusercontent.com/proxy/5EfuG_8qkCzkAd1F3rL7qrzaKJ9RGh42n0VF91VJNN2T2Vni1l5koxVe4BNNZEW0nH4-a81ANGVtCWAbm3xwLsk"
-                            />
-                        </div>
-                        <div className="col-md-8">
-                            <h5>Title</h5>
-                            <p >This is some text within a card body.</p>
-                        </div> 
-                        </div>
-                </Card>
+                )}            
             </div>
         </div>
-        </>
+      </>
     );
 }
 export default Category;
