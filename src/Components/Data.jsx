@@ -67,16 +67,38 @@ export const news = [
 
 export const users = [
     {
-        name:"Erden",
+        name:"Erden Aidynuly",
         image:"https://www.computerhope.com/jargon/g/guest-user.jpg",
         login :"erden@gmail.com",
         password : "user123"
     },
     {
-        name:"Admin",
+        name:"Admin Adminuly",
         image:"https://www.computerhope.com/jargon/g/guest-user.jpg",
         login:"admin@gmail.com",
         password : "admin123"
+    },
+    {
+        name:"Edil Zharkynuly",
+        image:"https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png",
+        login:"edil@gmail.com",
+        password : "user123"
+    },
+    {
+        name:"Aibek Nurlanov",
+        image:"https://previews.123rf.com/images/triken/triken1608/triken160800028/61320729-male-avatar-profile-picture-default-user-avatar-guest-avatar-simply-human-head-vector-illustration-i.jpg",
+        login:"aibek@gmail.com",
+        password : "user123"
     }
 ];
 
+export const blogs =[
+    {
+        datetime:"16.02.2021 at 23:27",
+        text:"Trondheim, Norway (CNN Business)The deep-sea oil and gas industry has a vast and costly infrastructure to maintain. Wells, other equipment, and thousands of kilometers of pipeline must be installed, inspected and repaired.",
+        author: {
+            name:"Edil Zharhynuly",
+            image:"https://www.computerhope.com/jargon/g/guest-user.jpg"
+        }
+    }
+];

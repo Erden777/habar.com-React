@@ -30,7 +30,7 @@ function Header(props){
                     <Nav>
                     { props.isAuth === true ? 
                         <>
-                            <Nav.Link href="#deets" >{props.userdata}</Nav.Link>
+                            <Nav.Link href="#deets" >{props.userdata.name}</Nav.Link>
                             <Nav.Link href="#deets"  onClick={() => logout()}>Logout</Nav.Link>
                         </>:
                          <>

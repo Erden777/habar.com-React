@@ -41,6 +41,8 @@ function Home(props){
         <Header isAuth={props.isAuth}
                 setIsAuth={props.setIsAuth}
                 categories={categories}
+                userdata={props.userdata}
+                setUserDate={props.setUserDate}
               />
         <Container style={{minHeight:"85vh"}}>
           
@@ -66,6 +68,7 @@ function Home(props){
                       setIsAuth={props.setIsAuth}
                       userdata={props.userdata}
                       setUserDate={props.setUserDate}
+                      categories={categories}
                     />
                  </Route>
                  <Route exact path="/categories/:id/">

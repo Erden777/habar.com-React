@@ -10,10 +10,10 @@ function LoginForm(props){
         for (var key in users) {
             if(props.login===users[key]['login'] && props.password===users[key]['password']){
                 alert(users[key]['name']);
-                props.setUserDate(users[key]);
-                console.log(users[key]);
-                
+                props.setUserDate(users[key]);    
                 props.setIsAuth(true);
+                props.setLogin("");
+                props.setPassword("");
                 return ;
             }
         }
@@ -42,11 +42,11 @@ function LoginForm(props){
             <Form onSubmit={hundleSubmit}>
                 <Form.Group controlId="formGroupEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control name="name" onChange={handleChange} placeholder="Enter email" />
+                    <Form.Control name="name" onChange={handleChange} placeholder="Enter email" value={props.login} />
                 </Form.Group>
                 <Form.Group controlId="formGroupPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" onChange={handleChange} name="password" placeholder="Password" />
+                    <Form.Control type="password" onChange={handleChange} name="password" placeholder="Password" value={props.password} />
                 </Form.Group>
                 <Button type="submit">SIGN IN</Button>
             </Form>

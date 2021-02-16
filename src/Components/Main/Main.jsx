@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import { Container, Carousel, Card, Figure, Form, Button,Modal } from "react-bootstrap";
-import { Data, news, users } from '../Data';
+import { Data, news, users, blogs } from '../Data';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import About from '../About/About';
@@ -19,6 +19,10 @@ import Header from '../Header/Header';
 
 
 function Main(props){
+    const [text, setText] = useState("");
+    const [title, setTitle] = useState("");
+    const [url, setUrl] = useState("");
+    const [categoryID , setCategoryID] = useState(1);
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -26,14 +30,44 @@ function Main(props){
 
     function hundleSubmit(e){
         e.preventDefault();
+        var newNews={
+            id: 5,
+            title:title,
+            text:text,
+            date:"21.02.2021 15:43", 
+            categories:categoryID,
+            uri:url
+         };
+         news.push(newNews);
+         handleClose()
     }
+
     function handleChange(e) {
 
+        if(e.target.name==="name"){
+            setText(e.target.value);
+        }if(e.target.name==="title"){
+            setTitle(e.target.value);
+        }if(e.target.name==="url"){
+            setUrl(e.target.value);
+        }if(e.target.name==="category"){
+            setCategoryID(e.target.value);
+        }
     }
 
     function hundleSubmitBlog(e){
         e.preventDefault();
+        var newblog= {
+            datetime:"16.02.2021 at 23:27",
+            text:text,
+            author: {
+                name:props.userdata.name,
+                image:props.userdata.image
+            }
+        };
 
+         blogs.push(newblog);
+         setText("");
         
     }
 
@@ -106,6 +140,7 @@ function Main(props){
             </div>
             <div className="col-md-5">
                 <h4>Blogs</h4>
+                {blogs.map((blog) =>
                 <Card body className="mt-3" style={{backgroundColor:"lightblue"}}>
                     <div className="row">
                      <div className="col-md-4">
@@ -113,55 +148,24 @@ function Main(props){
                                 width={80}
                                 height={80}
                                 alt="80x80"
-                                src="https://lh3.googleusercontent.com/proxy/5EfuG_8qkCzkAd1F3rL7qrzaKJ9RGh42n0VF91VJNN2T2Vni1l5koxVe4BNNZEW0nH4-a81ANGVtCWAbm3xwLsk"
+                                src={blog.author.image}
                             />
                         </div>
                         <div className="col-md-8">
-                            <h5>Title</h5>
-                            <p >This is some text within a card body.</p>
+                            <h5>{blog.author.name}</h5>
+                            <p >{blog.text}.</p>
                         </div> 
                         </div>
                 </Card>
+                )}
 
-                <Card body className="mt-3" style={{backgroundColor:"lightblue"}}>
-                    <div className="row">
-                     <div className="col-md-4">
-                        <Figure.Image
-                                width={80}
-                                height={80}
-                                alt="80x80"
-                                src="https://lh3.googleusercontent.com/proxy/5EfuG_8qkCzkAd1F3rL7qrzaKJ9RGh42n0VF91VJNN2T2Vni1l5koxVe4BNNZEW0nH4-a81ANGVtCWAbm3xwLsk"
-                            />
-                        </div>
-                        <div className="col-md-8">
-                            <h5>Title</h5>
-                            <p >This is some text within a card body.</p>
-                        </div> 
-                        </div>
-                </Card>
-
-                <Card body className="mt-3" style={{backgroundColor:"lightblue"}}>
-                    <div className="row">
-                     <div className="col-md-4">
-                        <Figure.Image
-                                width={80}
-                                height={80}
-                                alt="80x80"
-                                src="https://lh3.googleusercontent.com/proxy/5EfuG_8qkCzkAd1F3rL7qrzaKJ9RGh42n0VF91VJNN2T2Vni1l5koxVe4BNNZEW0nH4-a81ANGVtCWAbm3xwLsk"
-                            />
-                        </div>
-                        <div className="col-md-8">
-                            <h5>Title</h5>
-                            <p >This is some text within a card body.</p>
-                        </div> 
-                        </div>
-                </Card>
+                
                 { props.isAuth === true ?
                     <>
                         <Form className="mt-4" onSubmit={hundleSubmitBlog}>
                             <Form.Group controlId="exampleForm.ControlTextarea1">
                                 <Form.Label className="h4">Leave a comment:</Form.Label>
-                                <Form.Control as="textarea" name="name" onChange={handleChange} rows={4} />
+                                <Form.Control as="textarea" name="name" onChange={handleChange} rows={4} value={text}/>
                                 <Button variant="primary" className="mt-2 btn-sm" type="submit">Send</Button>{''}
                             </Form.Group>
                         </Form>
@@ -185,16 +189,45 @@ function Main(props){
                             <Modal.Title id="example-modal-sizes-title-lg">Post blog</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Title of News</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="exampleInputEmail1"
+                                aria-describedby="emailHelp"
+                                name="title"
+                                onChange={handleChange}
+                            />
+                            </div>
+                            <div class="form-group">
+                            <label for="exampleInputPassword1">Url of Picture</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="exampleInputPassword1"
+                                name="url"
+                                onChange={handleChange}
+                            />
+                            </div>
+                            <Form.Group controlId="exampleForm.ControlSelect1">
+                                <Form.Label>Category</Form.Label>
+                                <Form.Control as="select" name="category" onChange={handleChange}>
+                                {props.categories.map((category)=>
+                                <option value={category.id}>{category.name}</option>
+                                )}
+                            </Form.Control>
+                            </Form.Group>
                             <Form.Group controlId="exampleForm.ControlTextarea1">
                                 <Form.Label>Text: </Form.Label>
                                 <Form.Control as="textarea" name="name" onChange={handleChange} rows={5} />
                             </Form.Group>
                         </Modal.Body>
                         <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                        <Button variant="primary">Post</Button>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Close
+                            </Button>
+                            <Button variant="primary" type="submit">Post</Button>
                         </Modal.Footer>
                     </Form>
                 </Modal>
