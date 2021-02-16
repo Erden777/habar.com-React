@@ -6,8 +6,8 @@ import {
   Link
 } from "react-router-dom";
 
-import { Container , Carousel , Card , Figure } from "react-bootstrap";
-import { Data , news , users } from '../Data';
+import { Container, Carousel, Card, Figure, Form, Button,Modal } from "react-bootstrap";
+import { Data, news, users } from '../Data';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import About from '../About/About';
@@ -19,9 +19,14 @@ import Header from '../Header/Header';
 
 
 function Main(props){
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     return (
         <>
-            <div className="mt-3">
+        <div className="mt-3">
         <Carousel >
             <Carousel.Item style={{maxHeight:"50vh"}}>
                 <img
@@ -138,6 +143,44 @@ function Main(props){
                         </div> 
                         </div>
                 </Card>
+                { props.isAuth === true ?
+                    <>
+                        <Form className="mt-4">
+                            <Form.Group controlId="exampleForm.ControlTextarea1">
+                                <Form.Label className="h4">Leave a comment:</Form.Label>
+                                <Form.Control as="textarea" rows={4} />
+                                <Button variant="primary" className="mt-2 btn-sm" type="submit">Send</Button>{''}
+                            </Form.Group>
+                        </Form>
+                        <Button variant="success" onClick={handleShow}>
+                            ADD NEW NEWS
+                        </Button>
+                    </>
+                    :
+                    <>
+                    </>
+                }
+                <Modal
+                    size="lg"
+                    show={show}
+                    onHide={handleClose}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Header closeButton>
+                    <Modal.Title id="example-modal-sizes-title-lg">Modal title</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    I will not close if you click outside me. Don't even try to press
+                    escape key.
+                    </Modal.Body>
+                    <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary">Understood</Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         </div>
         </>

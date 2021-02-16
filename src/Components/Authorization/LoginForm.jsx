@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
-import { Data , users } from "../Data";
+import { Data, users } from "../Data";
 
 function LoginForm(props){
     function hundleSubmit(e){
@@ -10,11 +10,14 @@ function LoginForm(props){
         for (var key in users) {
             if(props.login===users[key]['login'] && props.password===users[key]['password']){
                 alert(users[key]['name']);
+                props.setUserDate(users[key]);
+                console.log(users[key]);
                 
                 props.setIsAuth(true);
                 return ;
             }
         }
+        
         if(props.isAuth===false){
             alert("Something wrong");
         }

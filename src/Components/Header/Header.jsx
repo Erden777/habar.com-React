@@ -7,6 +7,7 @@ function Header(props){
 
     function logout(){
         props.setIsAuth(false);
+        
     }
 
     return (
@@ -45,6 +46,5 @@ function Header(props){
         </>
     );
 }
-
 
 export default Header;

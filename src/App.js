@@ -26,6 +26,7 @@ function App(props) {
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
     const [isAuth, setIsAuth] = useState(false);
+    const [userdata, setUserDate] = useState();
 
   return (
     <>
@@ -36,6 +37,8 @@ function App(props) {
         setPassword={setPassword}
         isAuth={isAuth}
         setIsAuth={setIsAuth}
+        userdata={userdata}
+        setUserDate={setUserDate}
       />
     </>
   );

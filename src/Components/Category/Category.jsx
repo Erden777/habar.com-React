@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { news } from "../Data";
-import { Container , Carousel , Card , Figure } from "react-bootstrap";
+import { Container, Carousel, Card, Figure } from "react-bootstrap";
 
 function Category(props) {
     const { id } = useParams();

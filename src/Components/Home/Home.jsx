@@ -56,12 +56,16 @@ function Home(props){
                       setPassword={props.setPassword}
                       isAuth={props.isAuth}
                       setIsAuth={props.setIsAuth}
+                      userdata={props.userdata}
+                      setUserDate={props.setUserDate}
                      />
                 </Route>
                 <Route exact path="/">
                     <Main 
                       isAuth={props.isAuth}
                       setIsAuth={props.setIsAuth}
+                      userdata={props.userdata}
+                      setUserDate={props.setUserDate}
                     />
                  </Route>
                  <Route exact path="/categories/:id/">
