@@ -24,6 +24,19 @@ function Main(props){
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    function hundleSubmit(e){
+        e.preventDefault();
+    }
+    function handleChange(e) {
+
+    }
+
+    function hundleSubmitBlog(e){
+        e.preventDefault();
+
+        
+    }
+
     return (
         <>
         <div className="mt-3">
@@ -145,10 +158,10 @@ function Main(props){
                 </Card>
                 { props.isAuth === true ?
                     <>
-                        <Form className="mt-4">
+                        <Form className="mt-4" onSubmit={hundleSubmitBlog}>
                             <Form.Group controlId="exampleForm.ControlTextarea1">
                                 <Form.Label className="h4">Leave a comment:</Form.Label>
-                                <Form.Control as="textarea" rows={4} />
+                                <Form.Control as="textarea" name="name" onChange={handleChange} rows={4} />
                                 <Button variant="primary" className="mt-2 btn-sm" type="submit">Send</Button>{''}
                             </Form.Group>
                         </Form>
@@ -167,19 +180,23 @@ function Main(props){
                     backdrop="static"
                     keyboard={false}
                 >
-                    <Modal.Header closeButton>
-                    <Modal.Title id="example-modal-sizes-title-lg">Modal title</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                    I will not close if you click outside me. Don't even try to press
-                    escape key.
-                    </Modal.Body>
-                    <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary">Understood</Button>
-                    </Modal.Footer>
+                    <Form onSubmit={hundleSubmit}>
+                        <Modal.Header closeButton>
+                            <Modal.Title id="example-modal-sizes-title-lg">Post blog</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form.Group controlId="exampleForm.ControlTextarea1">
+                                <Form.Label>Text: </Form.Label>
+                                <Form.Control as="textarea" name="name" onChange={handleChange} rows={5} />
+                            </Form.Group>
+                        </Modal.Body>
+                        <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary">Post</Button>
+                        </Modal.Footer>
+                    </Form>
                 </Modal>
             </div>
         </div>
