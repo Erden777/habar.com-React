@@ -16,6 +16,22 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import About from '../About/About';
 import Main from '../Main/Main';
+import Category from "../Category/Category";
+
+const categories = [
+  {
+    id: 1,
+    name: "Sport"
+  },
+  {
+    id: 3,
+    name: "Technology"
+  },
+  {
+    id: 2,
+    name: "Political"
+  }
+];
 
 
 function Home(props){
@@ -24,9 +40,10 @@ function Home(props){
         <>
         <Header isAuth={props.isAuth}
                 setIsAuth={props.setIsAuth}
+                categories={categories}
               />
         <Container style={{minHeight:"85vh"}}>
-          <Router>
+          
              <Switch>
                 <Route exact path="/about">
                     <About/>
@@ -47,8 +64,12 @@ function Home(props){
                       setIsAuth={props.setIsAuth}
                     />
                  </Route>
+                 <Route exact path="/categories/:id/">
+                    <Category  
+                        categories={categories}
+                    />
+                </Route>
             </Switch>
-            </Router>
         </Container>
       <Footer/>
         </>

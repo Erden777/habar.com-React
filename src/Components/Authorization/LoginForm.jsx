@@ -45,7 +45,7 @@ function LoginForm(props){
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" onChange={handleChange} name="password" placeholder="Password" />
                 </Form.Group>
-                <Button type="submit">SIGN IN </Button>
+                <Button type="submit">SIGN IN</Button>
             </Form>
         </div>
     );
