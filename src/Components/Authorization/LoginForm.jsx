@@ -3,18 +3,16 @@ import { Form } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import { Data , users } from "../Data";
 
-
 function LoginForm(props){
-
     function hundleSubmit(e){
         e.preventDefault();
 
         for (var key in users) {
             if(props.login===users[key]['login'] && props.password===users[key]['password']){
                 alert(users[key]['name']);
-                // props.setUserdata(users[key]['name']);
+                
                 props.setIsAuth(true);
-                return;
+                return ;
             }
         }
         if(props.isAuth===false){

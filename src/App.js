@@ -20,6 +20,7 @@ import Footer from './Components/Footer/Footer';
 import Header from './Components/Header/Header';
 
 
+
 function App(props) {
 
     const [login, setLogin] = useState("");
@@ -28,35 +29,14 @@ function App(props) {
 
   return (
     <>
-      <Header isAuth={isAuth}
-              setIsAuth={setIsAuth}
-              />
-        <Container style={{minHeight:"85vh"}}>
-          <Router>
-             <Switch>
-                <Route exact path="/about">
-                    <About/>
-                </Route>
-                <Route exact path="/login">
-                    <Login 
-                      login={login}
-                      setLogin={setLogin}
-                      password={password}
-                      setPassword={setPassword}
-                      isAuth={isAuth}
-                      setIsAuth={setIsAuth}
-                     />
-                </Route>
-                <Route exact path="/">
-                    <Home 
-                      isAuth={isAuth}
-                      setIsAuth={setIsAuth}
-                    />
-                 </Route>
-            </Switch>
-            </Router>
-        </Container>
-      <Footer/>
+      <Home 
+        login={login}
+        setLogin={setLogin}
+        password={password}
+        setPassword={setPassword}
+        isAuth={isAuth}
+        setIsAuth={setIsAuth}
+      />
     </>
   );
 }
